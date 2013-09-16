@@ -157,7 +157,6 @@ package levels
 				var matRot:b2Mat22 = new b2Mat22();
 				matRot.Set(user.physics.body.GetAngle());
 				dir.MulM(matRot);
-				//PhysicsManager.world.
 				FireLaser(pos, dir);
 				//(world.RayCastOne( new b2Vec2(0, 0), new b2Vec2 (0, 3.5)).GetBody()).GetUserData().setForDel();
 			}

@@ -35,7 +35,8 @@ package architecture.components
 		protected var gyroX:Number = 0.0;
 		protected var minGyroThreshold:Number = 0.03;
 		protected var gyroAlpha:Number = 0.8;
-		protected var speedFactor:Number = 150.0;
+		protected var tiltFactor:Number = 150.0;
+		protected var speedFactor:Number = 1.0;
 		
 		public function SharkInput() 
 		{
@@ -65,9 +66,9 @@ package architecture.components
 			{
 				return;
 			}
-			tilt += gyroX * dt * speedFactor;
+			tilt += gyroX * dt * tiltFactor;
 			
-			speed = gyroX * speedFactor;
+			speed = Math.abs(gyroX) * speedFactor;
 			
 			if (tilt > maxTilt)
 			{

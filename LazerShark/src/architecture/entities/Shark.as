@@ -7,6 +7,8 @@ package architecture.entities
 	import architecture.components.SharkInput;
 	import architecture.components.SharkPhysics;
 	import architecture.base.PhysicsManager;
+	import Box2D.Common.Math.b2Mat22;
+	import Box2D.Common.Math.b2Vec2;
 	
 	import flash.media.Sound;
 	/**
@@ -75,6 +77,13 @@ package architecture.entities
 				omega = -maxAngularVelocity;
 			}
 			physics.body.SetAngularVelocity(omega);
+			
+			var linearVel:b2Vec2 = new b2Vec2(input.speed, 0.0);
+			var rot:b2Mat22 = new b2Mat22();
+			rot.Set(currentAngle);
+			linearVel.MulM(rot);
+			
+			physics.body.SetLinearVelocity(linearVel);
 			
 			graphics.setTilt(input.tilt);
 			
