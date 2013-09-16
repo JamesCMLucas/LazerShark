@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:69c44248ba8ecb716097d234e644fbab$ -->
+<TextureAtlas imagePath="bullshark.png">
+    <SubTexture name="00" x="2" y="274" width="180" height="68" frameX="-55" frameY="-9" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="01" x="2" y="204" width="190" height="68" frameX="-45" frameY="-9" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="02" x="2" y="136" width="216" height="66" frameX="-19" frameY="-10" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="03" x="2" y="2" width="234" height="66" frameX="-2" frameY="-9" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="04" x="2" y="70" width="234" height="64" frameX="-2" frameY="-10" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="05" x="2" y="2" width="234" height="66" frameX="-2" frameY="-9" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="06" x="2" y="136" width="216" height="66" frameX="-19" frameY="-10" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="07" x="2" y="204" width="190" height="68" frameX="-45" frameY="-9" frameWidth="242" frameHeight="82"/>
+    <SubTexture name="08" x="2" y="274" width="180" height="68" frameX="-55" frameY="-9" frameWidth="242" frameHeight="82"/>
+</TextureAtlas>

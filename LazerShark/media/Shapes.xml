@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Shapes>
+
+
+
+<Shape type="Shark" numVerts='12' res='0.3' fric='0.02' dens='12.0' image='Shark'>
+	<Point posX='237' posY='-36' /> 
+	<Point posX='193' posY='-8' /> 
+	<Point posX='143' posY='8' />
+	<Point posX='103' posY='16' />
+	<Point posX='47' posY='18' />
+	<Point posX='13' posY='18' /> 
+	<Point posX='-45' posY='6' /> 
+	<Point posX='-105' posY='-10' />
+	<Point posX='-45' posY='-38' /> 
+	<Point posX='13' posY='-44' /> 
+	<Point posX='47' posY='-48' />
+	<Point posX='193' posY='-52' />
+
+</Shape>
+
+<Shape type="Jellyfish" numVerts='8' res='0.3' fric='0.02' dens='12.0' image='Square'>
+	<Point posX='0' posY='79' /> 
+	<Point posX='-35' posY='69' /> 
+	<Point posX='-55' posY='51' /> 
+	<Point posX='-59' posY='25' /> 
+	<Point posX='0' posY='-22.5' /> 
+	<Point posX='63' posY='25' /> 
+	<Point posX='51' posY='51' /> 
+	<Point posX='35' posY='69' /> 
+</Shape>
+
+<Shape type="Square" numVerts='4' res='0.3' fric='0.02' dens='12.0' image='Square'>
+	<Point posX='-44' posY='44' /> 
+	<Point posX='-44' posY='-44' /> 
+	<Point posX='44' posY='-44' /> 
+	<Point posX='44' posY='44' /> 
+</Shape>
+
+<Shape type="Laser" numVerts='4' res='0.3' fric='0.02' dens='5.0' image='Laser'>
+	<Point posX='-5' posY='30' /> 
+	<Point posX='-5' posY='-30' /> 
+	<Point posX='5' posY='-30' /> 
+	<Point posX='5' posY='30' /> 
+</Shape>
+
+</Shapes>
+

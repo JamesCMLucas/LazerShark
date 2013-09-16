@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Shapes>
+
+<Shape type="Triangle" numVerts='3' res='0.3' fric='0.02' dens='12.0' image='Triangle'>
+	<Point posX='0.0' posY='0.45' /> 
+	<Point posX='-0.45' posY='-0.45' /> 
+	<Point posX='0.45' posY='-0.45' /> 
+</Shape>
+
+<Shape type="Pentagon" numVerts='5' res='0.3' fric='0.02' dens='12.0' image='Pentagon'>
+	<Point posX='0' posY='0.44' /> 
+	<Point posX='-0.44' posY='0.19' /> 
+	<Point posX='-0.3' posY='-0.44' /> 
+	<Point posX='0.3' posY='-0.44' /> 
+	<Point posX='0.44' posY='0.19' /> 
+</Shape>
+
+<Shape type="Square" numVerts='4' res='0.3' fric='0.02' dens='12.0' image='Square'>
+	<Point posX='-0.44' posY='0.44' /> 
+	<Point posX='-0.44' posY='-0.44' /> 
+	<Point posX='0.44' posY='-0.44' /> 
+	<Point posX='0.44' posY='0.44' /> 
+</Shape>
+
+<Shape type="Laser" numVerts='4' res='0.3' fric='0.02' dens='5.0' image='Laser'>
+	<Point posX='-0.05' posY='0.3' /> 
+	<Point posX='-0.05' posY='-0.3' /> 
+	<Point posX='0.05' posY='-0.3' /> 
+	<Point posX='0.05' posY='0.3' /> 
+</Shape>
+
+
+<Shape type="Star" numShapes='6' res='0.3' fric='0.02' dens='2.0' image='Star'>
+	<Part numVerts='5' >
+		<Point posX='0.09' posY='0.19' /> 
+		<Point posX='-0.09' posY='0.19' /> 
+		<Point posX='-0.16' posY='-0.5' /> 
+		<Point posX='.0' posY='-0.13' /> 
+		<Point posX='0.16' posY='-0.05' /> 
+	</Part>
+	<Part numVerts='3' >
+		<Point posX='0.09' posY='0.19' /> 
+		<Point posX='0' posY='0.44' /> 
+		<Point posX='-0.09' posY='0.19' /> 
+	</Part>
+	<Part numVerts='3' >
+		<Point posX='-0.09' posY='0.19' /> 
+		<Point posX='-0.44' posY='0.19' /> 
+		<Point posX='-0.16' posY='-0.5' />
+	</Part>
+	<Part numVerts='3' >
+		<Point posX='-0.16' posY='-0.5' /> 
+		<Point posX='-0.3' posY='-0.44' />
+		<Point posX='0' posY='-0.19' />
+	</Part>
+	<Part numVerts='3' >
+		<Point posX='0.16' posY='-0.5' /> 
+		<Point posX='0.3' posY='-0.44' /> 
+		<Point posX='0' posY='-0.19' /> 
+	</Part>
+	<Part numVerts='3' >
+		<Point posX='0.16' posY='-0.05' />
+		<Point posX='0.44' posY='0.2' />
+		<Point posX='0.09' posY='0.19' />
+	</Part>
+</Shape>
+</Shapes>
