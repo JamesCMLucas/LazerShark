@@ -57,9 +57,10 @@ package levels
 			entities = new Dictionary();
 			LevelAssets.init();
 			PhysicsManager.init();
-			
+
 			addEventListener(EnterFrameEvent.ENTER_FRAME, updatePerFrame);
 			entityID = 0;
+
 			this.loadTheShark();
 			
 		}
@@ -111,6 +112,7 @@ package levels
 		 */
 		private function updateEntities(dt:Number):void
 		{
+
 			for each (var entity:IEntity in entities)
 			{
 				if (!entity.isAlive())
@@ -133,10 +135,18 @@ package levels
 						entity.getGraphics().image.removeFromParent();
 						entity.getGraphics().offScreen = false;
 					}
-				}
-				
-				
+				}	
 			}
+			var sharkPos:b2Vec2 = user.physics.body.GetPosition();
+			
+			//this.rotation = -user.physics.body.GetAngle();
+			this.y = -(sharkPos.x - 5) * PhysicsManager.pixelsPerMetre; 
+			this.x = -(sharkPos.y - 5) * PhysicsManager.pixelsPerMetre; 
+			
+			
+
+
+			
 		}
 		
 		/**
@@ -158,7 +168,7 @@ package levels
 			if (touch.phase == TouchPhase.BEGAN)
 			{
 				var pos:b2Vec2 = user.getPhysics().body.GetWorldPoint(new b2Vec2(user.getPhysics().body.GetLocalCenter().x+1.5, user.getPhysics().body.GetLocalCenter().y-.01));
-				var dir:b2Vec2 = new b2Vec2(3.0, 0.0);
+				var dir:b2Vec2 = new b2Vec2(1.5, 0.0);
 				var matRot:b2Mat22 = new b2Mat22();
 				matRot.Set(user.physics.body.GetAngle());
 				dir.MulM(matRot);

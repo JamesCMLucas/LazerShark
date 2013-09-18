@@ -56,6 +56,7 @@ package
             
             mMainMenu = new Sprite();
             addChild(mMainMenu);
+
 			
 			//var logo:Image = new Image(Assets.getTexture("Logo"));
             //mMainMenu.addChild(logo);
