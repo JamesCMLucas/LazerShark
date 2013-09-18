@@ -19,7 +19,7 @@
 
 </Shape>
 
-<Shape type="Jellyfish" numVerts='8' res='0.3' fric='0.02' dens='12.0' image='Square'>
+<Shape type="Jellyfish" numVerts='8' res='0.3' fric='0.02' dens='12.0' image='Jellyfish'>
 	<Point posX='0' posY='79' /> 
 	<Point posX='-35' posY='69' /> 
 	<Point posX='-55' posY='51' /> 
@@ -38,10 +38,10 @@
 </Shape>
 
 <Shape type="Laser" numVerts='4' res='0.3' fric='0.02' dens='5.0' image='Laser'>
-	<Point posX='-5' posY='30' /> 
-	<Point posX='-5' posY='-30' /> 
-	<Point posX='5' posY='-30' /> 
-	<Point posX='5' posY='30' /> 
+	<Point posX='15' posY='2.5' /> 
+	<Point posX='-15' posY='2.5' /> 
+	<Point posX='-15' posY='-2.5' /> 
+	<Point posX='15' posY='-2.5' /> 
 </Shape>
 
 </Shapes>

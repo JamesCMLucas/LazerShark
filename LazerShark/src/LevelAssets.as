@@ -1,5 +1,7 @@
 package  
 {
+	import Box2D.Common.Math.b2Vec2;
+	import levels.LevelData;
 	import starling.core.Starling;
 	import flash.display.Bitmap;
     import flash.media.Sound;
@@ -77,6 +79,21 @@ package
 			var xml:XML = XML(create(xmlName));
 			if (xml == null) return null;
 			return new TextureAtlas(tex, xml);
+		}
+		
+		public static function getLevelData(lvlIndex:int):Vector.<LevelData>
+		{
+			var xml:XML = XML(create("Levels"));
+			var ret:Vector.<LevelData> = new Vector.<LevelData>();
+			var numLvl:int = xml.*[lvlIndex].@numEnemies;
+			//Levels.push(new Vector.<LevelData>());
+			for (var c:int = 0; c < numLvl; c++)
+			{
+				ret.push(new LevelData());
+				ret[c].Set(xml.*[lvlIndex].*[c].@type, new b2Vec2(xml.*[lvlIndex].*[c].@PosX, xml.*[lvlIndex].*[c].@PosY));
+			}
+			return ret;		
+		
 		}
 	}
 

@@ -7,6 +7,7 @@ package
 	
 	 import architecture.base.IPhysicsComponent;
 	 import architecture.physics.ShapeDef;
+	 import Box2D.Collision.Shapes.b2CircleShape;
 	 import Box2D.Collision.Shapes.b2PolygonShape;
 	 import Box2D.Common.Math.b2Vec2;
 	 import Box2D.Dynamics.b2Body;
@@ -330,7 +331,7 @@ package
 			if( shapeType == "Laser")
 			{
 				
-				//shapeFixtureDef.isSensor = true;
+				shapeFixtureDef.isSensor = true;
 				//shapeBodyDef.position.Set(0, 1.5);
 			}
 			
@@ -346,7 +347,18 @@ package
 			//myShape.setBody(world.CreateBody(shapeBodyDef));
 			//myShape.getBody().CreateFixture(shapeFixtureDef);
 			
-			
+			if (shapeType == "Shark")
+			{
+				var sensorDef:b2FixtureDef = new b2FixtureDef();
+				var circleShape:b2CircleShape = new b2CircleShape()
+				var bodShape:b2PolygonShape = new b2PolygonShape();
+				bodShape.SetAsBox(3, 3);
+				circleShape.SetRadius(3);
+				sensorDef.shape = bodShape;// circleShape;
+				sensorDef.isSensor = true;
+				ret.CreateFixture(sensorDef);
+				//sensorDef.filter.groupIndex = id;
+			}
 			/*var sensorDef:b2FixtureDef = new b2FixtureDef();
 			var circleShape:b2CircleShape = new b2CircleShape()
 			circleShape.SetRadius(.5);

@@ -47,6 +47,10 @@ package architecture.entities
 		{
 			return id;
 		}
+		public function shot():void
+		{
+			bAlive = false;
+		}
 		
 		public function update(dt:Number):void
 		{

@@ -20,6 +20,9 @@ package architecture.base
 		 * getter...any graphics component is/has an image
 		 */
 		function get image():Image;
+		
+		function get offScreen():Boolean
+		function set offScreen( value:Boolean ):void
 	}
 
 }

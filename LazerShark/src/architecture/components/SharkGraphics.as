@@ -16,7 +16,7 @@ package architecture.components
 	public class SharkGraphics extends TeeterTexture implements IGraphicsComponent
 	{
 		protected var sharky:Shark = null;
-		
+		private var _offScreen = false;
 		public function SharkGraphics(texVec:Vector.<Texture>)
 		{
 			super(texVec, 50.0);
@@ -72,6 +72,17 @@ package architecture.components
 		{
 			sharky = value as Shark;
 		}
+		
+		public function get offScreen():Boolean
+		{
+			return _offScreen;
+		}
+		public function set offScreen(value:Boolean):void
+		{
+			_offScreen = value;
+		}
+		
+		
 	}
 
 }

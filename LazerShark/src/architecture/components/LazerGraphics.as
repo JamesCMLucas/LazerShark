@@ -13,14 +13,16 @@ package architecture.components
 	{
 		
 		public var _entity:Lazer = null;
+		private var _offScreen = false;
 		public function LazerGraphics( imgHeight:int, imgWidth:int ) 
 		{
 			super(Assets.createTexture("Lazer"));
 			//ShapeImage = new Image(Assets.getTexture(type));
 			this.pivotX = this.width / 2;
 			this.pivotY = this.height / 2;
-			this.width = 15;
+			this.width = 30;
 			this.height = 5;
+			super.visible = false;
 		}
 		public function get image():Image 
 		{
@@ -50,6 +52,15 @@ package architecture.components
 		public function set entity(value:IEntity):void 
 		{
 			_entity = value as Lazer;
+		}
+		
+		public function get offScreen():Boolean
+		{
+			return _offScreen;
+		}
+		public function set offScreen(value:Boolean):void
+		{
+			_offScreen = value;
 		}
 	}
 

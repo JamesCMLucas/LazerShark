@@ -12,6 +12,8 @@ package architecture.components
 	public class JellyFishGraphics extends Image implements IGraphicsComponent 
 	{
 		public var _entity:JellyFish = null;
+		private var _visible:Boolean = false;
+		private var _offScreen:Boolean = false;
 		public function JellyFishGraphics() 
 		{
 			super(Assets.createTexture("Jellyfish"));
@@ -31,12 +33,12 @@ package architecture.components
 		
 		public function setVisible(yeserno:Boolean):void 
 		{
-			
+			_visible = yeserno;
 		}
 		
 		public function isVisible():Boolean 
 		{
-			return true;
+			return _visible;
 		}
 		
 		public function get entity():IEntity 
@@ -47,6 +49,15 @@ package architecture.components
 		public function set entity(value:IEntity):void 
 		{
 			_entity = value as JellyFish;
+		}
+		
+		public function get offScreen():Boolean
+		{
+			return _offScreen;
+		}
+		public function set offScreen(value:Boolean):void
+		{
+			_offScreen = value;
 		}
 		
 	}

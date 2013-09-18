@@ -34,6 +34,7 @@ import Box2D.Common.Math.b2Vec2;
 				var bodyA:b2Body = contact.GetFixtureA().GetBody();
 				var bodyB:b2Body = contact.GetFixtureB().GetBody();
 				bodyA.GetUserData().physics.beginContact(bodyB);
+				bodyB.GetUserData().physics.beginContact(bodyA);
 				return;
 			
 			
@@ -74,13 +75,20 @@ import Box2D.Common.Math.b2Vec2;
 		
 		override public function EndContact(contact:b2Contact):void
 		{
-			/*if ( ( contact.GetFixtureA().GetBody() != null ) && ( contact.GetFixtureB().GetBody() != null ) )
+			if ( ( contact.GetFixtureA().GetBody() != null ) && ( contact.GetFixtureB().GetBody() != null ) )
 			{
 				var bodyA:b2Body = contact.GetFixtureA().GetBody();
 				var bodyB:b2Body = contact.GetFixtureB().GetBody();
-				bodyA.GetUserData().PhysicsData.EndContact(bodyB);
+				var bSensor:Boolean = false;
+				if (contact.GetFixtureA().IsSensor() == contact.GetFixtureB().IsSensor())
+				{
+					bSensor = true;	
+				}
+				bodyA.GetUserData().physics.endContact(bodyB, bSensor);
+				bodyB.GetUserData().physics.endContact(bodyA, bSensor);
 				return;
-				if ( contact.GetFixtureA().IsSensor() != contact.GetFixtureB().IsSensor())
+			}
+				/*if ( contact.GetFixtureA().IsSensor() != contact.GetFixtureB().IsSensor())
 				{
 					
 					if (!contact.GetFixtureA().IsSensor())

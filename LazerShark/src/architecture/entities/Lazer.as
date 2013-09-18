@@ -19,6 +19,7 @@ package architecture.entities
 		public var graphics:LazerGraphics;
 		public var physics:LazerPhysics;
 		
+		
 		protected var fireSound:Sound;
 		
 		public function Lazer() 
@@ -51,9 +52,7 @@ package architecture.entities
 		
 		public function fire():void
 		{
-			fireSound.play();
-			
-			bAlive = false;
+				fireSound.play();
 		}
 		public function getID():int
 		{
@@ -71,6 +70,10 @@ package architecture.entities
 		public function isAlive():Boolean
 		{
 			return bAlive;
+		}
+		public function setAlive( value:Boolean )
+		{
+			bAlive = value;
 		}
 		
 		public function getGraphics():IGraphicsComponent 

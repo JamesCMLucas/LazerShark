@@ -2,7 +2,9 @@ package architecture.components
 {
 	import architecture.base.IEntity;
 	import architecture.base.IPhysicsComponent;
+	import architecture.entities.JellyFish;
 	import architecture.entities.Lazer;
+	import architecture.entities.Shark;
 	import Box2D.Dynamics.b2Body;
 	
 	/**
@@ -24,23 +26,23 @@ package architecture.components
 		
 		public function beginContact(other:b2Body):void 
 		{
-			switch(other.GetUserData().getID())
+			
+			if ( other.GetUserData() is Shark)
 			{
-					case 0:
-						{
-							break;
-						}
-					case 1:
-						{
-							(other.GetUserData() as Lazer).fire();
-							break;
-						}
+				(_entity as JellyFish).getGraphics().setVisible(true);
+			}
+			else if ( other.GetUserData() is Lazer )
+			{
+				(_entity as JellyFish).shot();
 			}
 		}
 		
-		public function endContact(other:b2Body):void 
+		public function endContact(other:b2Body, isSensor:Boolean):void 
 		{
-			
+			if ( other.GetUserData() is Shark)
+			{
+				(_entity as JellyFish).getGraphics().offScreen = true;
+			}
 		}
 		
 		public function get body():b2Body 

@@ -50,15 +50,18 @@ package levels
 		public var user:Shark;
 		public var pixelsPerMeter:Number = 50;
 		public var metersPerPixel:Number = 1 / pixelsPerMeter;
+		private var entityID:int;
 		public function Level() 
 		{
-			vecShapes = new Vector.<Lazer>();
+			
 			entities = new Dictionary();
 			LevelAssets.init();
 			PhysicsManager.init();
 			
 			addEventListener(EnterFrameEvent.ENTER_FRAME, updatePerFrame);
+			entityID = 0;
 			this.loadTheShark();
+			
 		}
 		
 		public function loadTheShark():void
@@ -72,25 +75,25 @@ package levels
 			var i:SharkInput = new SharkInput();
 			
 			var p:SharkPhysics = new SharkPhysics( Assets.CreateSimpleShape(PhysicsManager.world, "Shark", 2) );
-			/*var def:b2BodyDef = new b2BodyDef();
-			def.type = b2Body.b2_kinematicBody;
-			def.position.Set(5, 5);
-			
-			p.body = PhysicsManager.world.CreateBody(def);*/
+
 			p.body.SetPosition(new b2Vec2(5, 5));
 			
-			user = new Shark(0, g, p, i);
+			user = new Shark(entityID, g, p, i);
 			(user as Shark).lazerSound = LevelAssets.getSound("Lazer");
 			entities[user.getID()] = user;
-			//this.addChild(user.getGraphics() as SharkGraphics);
 			
-			var jg:JellyFishGraphics = new JellyFishGraphics();
-			var jp:JellyFishPhysics = new JellyFishPhysics(Assets.CreateSimpleShape(PhysicsManager.world, "Jellyfish", 2));
-			jp.body.SetPosition( new b2Vec2( 15, 5 ) );
-			var npc:JellyFish = new JellyFish( 2, jg, jp );
-			//jp.entity = npc;
-			this.addChild(jg);
-			entities[npc.getID()] = npc;
+			entityID++;
+			var lvlData:Vector.<LevelData> = LevelAssets.getLevelData(0);
+			
+			for each( var ld:LevelData in lvlData)
+			{
+				var jg:JellyFishGraphics = new JellyFishGraphics();
+				var jp:JellyFishPhysics = new JellyFishPhysics(Assets.CreateSimpleShape(PhysicsManager.world, ld.GetType(), 2));// "Jellyfish", 2));
+				jp.body.SetPosition( ld.GetPos() );
+				var npc:JellyFish = new JellyFish( entityID, jg, jp );
+				entities[npc.getID()] = npc;
+				entityID++;
+			}
 			
 		}
 		
@@ -110,22 +113,29 @@ package levels
 		{
 			for each (var entity:IEntity in entities)
 			{
+				if (!entity.isAlive())
+				{
+					entity.getGraphics().image.removeFromParent();
+					PhysicsManager.sendToTheKillingFloor(entity.getPhysics().body);
+					delete entities[entity.getID()];
+					continue;
+				}
 				entity.update(dt);
-			}
-			for ( var index:int; index < vecShapes.length; index++ )// each (var l:Lazer in vecShapes)
-			{
+				if (entity is JellyFish)
+				{
+					if (entity.getGraphics().isVisible()) //(entity.getGraphics().isVisible() && entity.getGraphics().image.parent == null)
+					{
+						this.addChild(entity.getGraphics().image);
+						entity.getGraphics().setVisible(false);
+					}
+					else if (entity.getGraphics().offScreen)//(!entity.getGraphics().isVisible() && entity.getGraphics().image.parent != null)
+					{
+						entity.getGraphics().image.removeFromParent();
+						entity.getGraphics().offScreen = false;
+					}
+				}
 				
-				if ( vecShapes[index].isAlive() )
-				{
-					vecShapes[index].update(dt);
-				}
-				else 
-				{
-					vecShapes[index].getGraphics().image.removeFromParent();
-					PhysicsManager.sendToTheKillingFloor(vecShapes[index].physics.body);
-					vecShapes.splice(index, 1);
-					
-				}
+				
 			}
 		}
 		
@@ -147,42 +157,33 @@ package levels
 		//	user.input.touch(touch);
 			if (touch.phase == TouchPhase.BEGAN)
 			{
-				//FireLaser( new b2Vec2((touch.globalX - Constants.CenterX) * metersPerPixel, ( Constants.CenterY - touch.globalY) * metersPerPixel));
-				//var pos:b2Vec2 = new b2Vec2( ( touch.globalY ) * PhysicsManager.metresPerPixel, (touch.globalX ) * PhysicsManager.metresPerPixel);
-				//var pos:b2Vec2 = new b2Vec2( ( touch.globalX ) * PhysicsManager.metresPerPixel,(touch.globalY ) * PhysicsManager.metresPerPixel);
-				//var pos:b2Vec2 = new b2Vec2(5, 6);
-				//var pos:b2Vec2 = new b2Vec2(user.getPhysics().body.GetPosition().x + 2, user.getPhysics().body.GetPosition().y - 0.1);
 				var pos:b2Vec2 = user.getPhysics().body.GetWorldPoint(new b2Vec2(user.getPhysics().body.GetLocalCenter().x+1.5, user.getPhysics().body.GetLocalCenter().y-.01));
 				var dir:b2Vec2 = new b2Vec2(3.0, 0.0);
 				var matRot:b2Mat22 = new b2Mat22();
 				matRot.Set(user.physics.body.GetAngle());
 				dir.MulM(matRot);
 				FireLaser(pos, dir);
-				//(world.RayCastOne( new b2Vec2(0, 0), new b2Vec2 (0, 3.5)).GetBody()).GetUserData().setForDel();
 			}
 		}
 	
-		public var vecShapes:Vector.<Lazer>;
+		
 		// addded by Graham September 12 2013
 		public function FireLaser( pos:b2Vec2, dir:b2Vec2 ):void
 		{
-			//TODO create fuction that creates a new shape for the lazer 
-				//vecShapes.push(new Shape("Laser",  "Red", 5, 30, false));
-		
-				vecShapes.push( new Lazer())
-				var newShapeIndex:int = vecShapes.length - 1;
+			
+				var lazer:Lazer = new Lazer();
+				
 				var lg:LazerGraphics = new LazerGraphics(2,2);
-				vecShapes[newShapeIndex].LazerSetup( 1, lg, new LazerPhysics( Assets.CreateSimpleShape(PhysicsManager.world, "Laser", 1)));
-				vecShapes[newShapeIndex].physics.entity = vecShapes[newShapeIndex];
+				lazer.LazerSetup( entityID, lg, new LazerPhysics( Assets.CreateSimpleShape(PhysicsManager.world, "Laser", 1)));
+				lazer.physics.entity = lazer;
+				entities[lazer.getID()] = lazer;
 				this.addChild(lg);
-				//vecShapes[newShapeIndex].PhysicsData = new LaserPhysics(vecShapes[newShapeIndex]);
-				//vecShapes[newShapeIndex].ID = 3;
-				//vecShapes[newShapeIndex].mBody = Assets.CreateSimpleShape(world, vecShapes[newShapeIndex], "Laser", 0);
-				//vecShapes[newShapeIndex].physics.body.SetPosition(newPos);
 				
-				vecShapes[newShapeIndex].physics.body.SetPositionAndAngle(pos, user.getPhysics().body.GetAngle());
 				
-				vecShapes[newShapeIndex].physics.body.ApplyImpulse(dir, vecShapes[newShapeIndex].physics.body.GetWorldCenter());
+				lazer.physics.body.SetPositionAndAngle(pos, user.getPhysics().body.GetAngle());
+				
+				lazer.physics.body.ApplyImpulse(dir, lazer.physics.body.GetWorldCenter());
+				entityID++;
 		}
 		
 	}

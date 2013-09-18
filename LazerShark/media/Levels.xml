@@ -1,5 +1,10 @@
 <Levels>
-<Level>
-<Enemy type="Square" PosX='0' PosY='0'/>
+<Level numEnemies= '6'>
+<Enemy type="Jellyfish" PosX='5' PosY='10'/>
+<Enemy type="Jellyfish" PosX='15' PosY='5'/>
+<Enemy type="Jellyfish" PosX='12' PosY='1'/>
+<Enemy type="Jellyfish" PosX='10' PosY='3'/>
+<Enemy type="Jellyfish" PosX='7' PosY='7'/>
+<Enemy type="Jellyfish" PosX='12' PosY='10'/>
 </Level>
 </Levels>

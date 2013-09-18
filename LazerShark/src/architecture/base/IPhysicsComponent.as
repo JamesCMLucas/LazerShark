@@ -17,7 +17,7 @@ package architecture.base
 		 * called by the physics manager
 		 * @param	other - the other rigid body
 		 */
-		function endContact(other:b2Body):void;
+		function endContact(other:b2Body, isSensor:Boolean):void;
 		
 		function get body():b2Body;
 		

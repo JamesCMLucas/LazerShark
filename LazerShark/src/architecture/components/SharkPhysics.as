@@ -2,6 +2,7 @@ package architecture.components
 {
 	import architecture.base.IEntity;
 	import architecture.base.IPhysicsComponent;
+	import architecture.entities.JellyFish;
 	import architecture.entities.Shark;
 	import Box2D.Dynamics.b2Body;
 	/**
@@ -21,13 +22,19 @@ package architecture.components
 		/* INTERFACE architecture.base.IPhysicsComponent */
 		public function beginContact(other:b2Body):void 
 		{
+			if (other.GetUserData() is JellyFish)
+			{
+				//(other.GetUserData() as JellyFish).graphics.setVisible(true);
+			}
 			
-			(_entity as Shark).fireLazer();
 		}
 		/* INTERFACE architecture.base.IPhysicsComponent */
-		public function endContact(other:b2Body):void 
+		public function endContact(other:b2Body, isSensor:Boolean):void 
 		{
-			
+			if (other.GetUserData() is JellyFish)
+			{
+				//(other.GetUserData() as JellyFish).graphics.setVisible(false);
+			}
 		}
 		/* INTERFACE architecture.base.IComponent */
 		public function get entity():IEntity 
